@@ -39,7 +39,8 @@ const dotsPanel = document.getElementById('showcase-dots');
 function showSlide(index) {
   activeSlide = (index + slides.length) % slides.length;
   const [name, type, domain] = slides[activeSlide];
-  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${name} ${type} (opens in a new tab)"><img src="assets/projects/${domain}.jpg" width="1440" height="1000" alt="Homepage screenshot of ${name} — ${type}"></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer">Visit website</a></div>`;
+  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${name} ${type} (opens in a new tab)"><div class="website-scroll-window"><img class="website-scroll-image" src="assets/projects/${domain}-full.jpg" width="1440" alt="Homepage screenshot of ${name} — ${type}"></div></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer">Visit website</a></div>`;
+  prepareScreenshotScroll();
   document.getElementById('slide-count').textContent = `${String(activeSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
   dotsPanel.querySelectorAll('button').forEach((button, i) => button.setAttribute('aria-current', String(i === activeSlide)));
 }
@@ -74,8 +75,9 @@ let galleryHovered = false;
 let autoplayTimer;
 function resetAutoplay() {
   clearInterval(autoplayTimer);
+  gallery.classList.toggle("scroll-paused", autoplayPaused || galleryHovered || document.hidden || gallery.contains(document.activeElement));
   if (autoplayPaused || galleryHovered || document.hidden || gallery.contains(document.activeElement)) return;
-  autoplayTimer = setInterval(() => showSlide(activeSlide + 1), 5000);
+  autoplayTimer = setInterval(() => showSlide(activeSlide + 1), 20000);
 }
 autoplayButton.addEventListener('click', () => {
   autoplayPaused = !autoplayPaused;
@@ -93,3 +95,15 @@ gallery.addEventListener('touchend', resetAutoplay, { passive: true });
 gallery.addEventListener('click', resetAutoplay);
 document.addEventListener('visibilitychange', resetAutoplay);
 resetAutoplay();
+
+function prepareScreenshotScroll() {
+  const image = slidePanel.querySelector('.website-scroll-image');
+  if (!image) return;
+  function measure() {
+    const distance = Math.max(0, image.getBoundingClientRect().height - image.parentElement.clientHeight);
+    image.style.setProperty('--scroll-distance', `${-distance}px`);
+  }
+  image.addEventListener('load', measure, { once: true });
+  if (image.complete) measure();
+}
+window.addEventListener('resize', prepareScreenshotScroll);
