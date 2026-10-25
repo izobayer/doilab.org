@@ -1,4 +1,6 @@
+function projectUrl(domain) { return 'https://' + domain + (domain === 'journal.bhabanagarafoundation.org' ? '/index.php/BIJBS' : ''); }
 const projects = [
+  ['Bhabanagara Foundation', 'International Journal of Bengal Studies', 'journal.bhabanagarafoundation.org'],
   ['Bangla Academy', 'Journal', 'journal.banglaacademy.gov.bd'],
   ['Bangla Academy', 'Publications', 'pub.banglaacademy.gov.bd'],
   ['International Mother Language Institute', 'Journal', 'journal.imli.gov.bd'],
@@ -8,7 +10,7 @@ const projects = [
   ['Rabindra University', 'Journal', 'journal.rub.ac.bd'],
 ];
 const bn = new Intl.NumberFormat('en-US', { minimumIntegerDigits: 2 });
-document.getElementById('project-list').innerHTML = projects.map(([name, type, domain], i) => `<a class="project-row" href="https://${domain}" target="_blank" rel="noopener noreferrer" aria-label="${name} ${type} website (opens in a new tab)"><span class="project-number">${bn.format(i + 1)}</span><span class="project-title">${name}<small>${type}</small></span><span class="project-domain">${domain}</span><span class="project-visit">View website</span></a>`).join('');
+document.getElementById('project-list').innerHTML = projects.map(([name, type, domain], i) => `<a class="project-row" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="${name} ${type} website (opens in a new tab)"><span class="project-number">${bn.format(i + 1)}</span><span class="project-title">${name}<small>${type}</small></span><span class="project-domain">${domain}</span><span class="project-visit">View website</span></a>`).join('');
 const menu = document.querySelector('.menu');
 const nav = document.querySelector('nav');
 function closeMenu() { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'Open menu'); }
@@ -29,7 +31,7 @@ document.getElementById('brief-form').addEventListener('submit', event => {
 });
 
 // Real website captures; include only screenshots successfully obtained.
-const screenshotDomains = ['journal.banglaacademy.gov.bd', 'journal.imli.gov.bd', 'pub.imli.gov.bd', 'journal.persian.du.ac.bd', 'journal.lokabhabna.com'];
+const screenshotDomains = ['journal.bhabanagarafoundation.org', 'journal.banglaacademy.gov.bd', 'journal.imli.gov.bd', 'pub.imli.gov.bd', 'journal.persian.du.ac.bd', 'journal.lokabhabna.com'];
 const slides = projects.filter(project => screenshotDomains.includes(project[2]));
 let activeSlide = 0;
 const slidePanel = document.getElementById('showcase-slide');
@@ -37,7 +39,7 @@ const dotsPanel = document.getElementById('showcase-dots');
 function showSlide(index) {
   activeSlide = (index + slides.length) % slides.length;
   const [name, type, domain] = slides[activeSlide];
-  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="https://${domain}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${name} ${type} (opens in a new tab)"><img src="assets/projects/${domain}.jpg" width="1440" height="1000" alt="Homepage screenshot of ${name} — ${type}"></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="https://${domain}" target="_blank" rel="noopener noreferrer">Visit website</a></div>`;
+  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${name} ${type} (opens in a new tab)"><img src="assets/projects/${domain}.jpg" width="1440" height="1000" alt="Homepage screenshot of ${name} — ${type}"></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer">Visit website</a></div>`;
   document.getElementById('slide-count').textContent = `${String(activeSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
   dotsPanel.querySelectorAll('button').forEach((button, i) => button.setAttribute('aria-current', String(i === activeSlide)));
 }

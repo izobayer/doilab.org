@@ -1,4 +1,6 @@
+function projectUrl(domain) { return 'https://' + domain + (domain === 'journal.bhabanagarafoundation.org' ? '/index.php/BIJBS' : ''); }
 const projects = [
+  ['ভাবনগর ফাউন্ডেশন', 'ইন্টারন্যাশনাল জার্নাল অব বেঙ্গল স্টাডিজ', 'journal.bhabanagarafoundation.org'],
   ['বাংলা একাডেমি', 'জার্নাল', 'journal.banglaacademy.gov.bd'],
   ['বাংলা একাডেমি', 'প্রকাশনা', 'pub.banglaacademy.gov.bd'],
   ['আন্তর্জাতিক মাতৃভাষা ইনস্টিটিউট', 'জার্নাল', 'journal.imli.gov.bd'],
@@ -8,7 +10,7 @@ const projects = [
   ['রবীন্দ্র বিশ্ববিদ্যালয়', 'জার্নাল', 'journal.rub.ac.bd'],
 ];
 const bn = new Intl.NumberFormat('bn-BD', { minimumIntegerDigits: 2 });
-document.getElementById('project-list').innerHTML = projects.map(([name, type, domain], i) => `<a class="project-row" href="https://${domain}" target="_blank" rel="noopener noreferrer" aria-label="${name} ${type} ওয়েবসাইট (নতুন ট্যাবে খুলবে)"><span class="project-number">${bn.format(i + 1)}</span><span class="project-title">${name}<small>${type}</small></span><span class="project-domain">${domain}</span><span class="project-visit">ওয়েবসাইট দেখুন</span></a>`).join('');
+document.getElementById('project-list').innerHTML = projects.map(([name, type, domain], i) => `<a class="project-row" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="${name} ${type} ওয়েবসাইট (নতুন ট্যাবে খুলবে)"><span class="project-number">${bn.format(i + 1)}</span><span class="project-title">${name}<small>${type}</small></span><span class="project-domain">${domain}</span><span class="project-visit">ওয়েবসাইট দেখুন</span></a>`).join('');
 const menu = document.querySelector('.menu');
 const nav = document.querySelector('nav');
 function closeMenu() { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'মেনু খুলুন'); }
@@ -37,7 +39,7 @@ const dotsPanel = document.getElementById('showcase-dots');
 function showSlide(index) {
   activeSlide = (index + slides.length) % slides.length;
   const [name, type, domain] = slides[activeSlide];
-  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="https://${domain}" target="_blank" rel="noopener noreferrer" aria-label="ওয়েবসাইট দেখুন: ${name} ${type} (নতুন ট্যাবে খুলবে)"><img src="assets/projects/${domain}.jpg" width="1440" height="1000" alt="হোমপেজের স্ক্রিনশট: ${name} — ${type}"></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="https://${domain}" target="_blank" rel="noopener noreferrer">ওয়েবসাইট দেখুন</a></div>`;
+  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="ওয়েবসাইট দেখুন: ${name} ${type} (নতুন ট্যাবে খুলবে)"><img src="assets/projects/${domain}.jpg" width="1440" height="1000" alt="হোমপেজের স্ক্রিনশট: ${name} — ${type}"></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer">ওয়েবসাইট দেখুন</a></div>`;
   document.getElementById('slide-count').textContent = `${bn.format(activeSlide + 1)} / ${bn.format(slides.length)}`;
   dotsPanel.querySelectorAll('button').forEach((button, i) => button.setAttribute('aria-current', String(i === activeSlide)));
 }
