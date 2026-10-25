@@ -41,7 +41,17 @@ const track = panel.querySelector('.continuous-track');
 const segmentElement = panel.querySelector('.continuous-segment');
 function measureGallery() {
   track.style.setProperty('--gallery-distance', `${-segmentElement.getBoundingClientRect().height}px`);
-  track.style.setProperty('--gallery-duration', `${Math.max(60, segmentElement.getBoundingClientRect().height / 48)}s`);
+  const cards = Array.from(segmentElement.children);
+  track.style.setProperty('--gallery-duration', `${cards.length * 4}s`);
+  let offset = 0;
+  const frames = ['0% { transform: translateY(0); }'];
+  cards.forEach((card, index) => {
+    offset += card.getBoundingClientRect().height;
+    frames.push(`${(index + 1) / cards.length * 100}% { transform: translateY(${-offset}px); }`);
+  });
+  let timingStyle = document.getElementById('gallery-timing');
+  if (!timingStyle) { timingStyle = document.createElement('style'); timingStyle.id = 'gallery-timing'; document.head.appendChild(timingStyle); }
+  timingStyle.textContent = `@keyframes continuous-rise { ${frames.join(' ')} }`;
 }
 panel.querySelectorAll('img').forEach(image => image.addEventListener('load', measureGallery));
 window.addEventListener('resize', measureGallery);
