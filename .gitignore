@@ -1,0 +1,5 @@
+*.zip
+*preview*.png
+preview-*.png
+modern-services.png
+.DS_Store
