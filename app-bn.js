@@ -30,80 +30,28 @@ document.getElementById('brief-form').addEventListener('submit', event => {
   document.getElementById('form-status').textContent = 'ব্রিফ প্রস্তুত। ডাউনলোড ফোল্ডার থেকে ফাইলটি doilaborg@gmail.com ঠিকানায় ইমেইল করুন।';
 });
 
-// Real website captures; include only স্ক্রিনশটs successfully obtained.
-const screenshotDomains = ['journal.bhabanagarafoundation.org', 'journal.banglaacademy.gov.bd', 'journal.imli.gov.bd', 'pub.imli.gov.bd', 'journal.persian.du.ac.bd', 'journal.lokabhabna.com'];
-const slides = projects.filter(project => screenshotDomains.includes(project[2]));
-let activeSlide = 0;
-const slidePanel = document.getElementById('showcase-slide');
-const dotsPanel = document.getElementById('showcase-dots');
-function showSlide(index) {
-  activeSlide = (index + slides.length) % slides.length;
-  const [name, type, domain] = slides[activeSlide];
-  slidePanel.innerHTML = `<figure class="showcase-frame"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${domain}</span></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="ওয়েবসাইট দেখুন: ${name} ${type} (নতুন ট্যাবে খুলবে)"><div class="website-scroll-window"><img class="website-scroll-image" src="assets/projects/${domain}-full.jpg" width="1440" alt="হোমপেজের স্ক্রিনশট: ${name} — ${type}"></div></a></figure><div class="showcase-meta"><div><h3>${name}</h3><p>${type}</p></div><a href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer">ওয়েবসাইট দেখুন</a></div>`;
-  prepareScreenshotScroll();
-  document.getElementById('slide-count').textContent = `${bn.format(activeSlide + 1)} / ${bn.format(slides.length)}`;
-  dotsPanel.querySelectorAll('button').forEach((button, i) => button.setAttribute('aria-current', String(i === activeSlide)));
-}
-slides.forEach(([name, type], index) => {
-  const dot = document.createElement('button'); dot.type = 'button';
-  dot.setAttribute('aria-label', `দেখুন: ${name} ${type} স্ক্রিনশট`);
-  dot.addEventListener('click', () => showSlide(index)); dotsPanel.appendChild(dot);
-});
-document.getElementById('slide-prev').addEventListener('click', () => showSlide(activeSlide - 1));
-document.getElementById('slide-next').addEventListener('click', () => showSlide(activeSlide + 1));
-document.getElementById('showcase').addEventListener('keydown', event => {
-  if (event.target.matches('input, textarea, select')) return;
-  if (event.key === 'ArrowLeft') { event.preventDefault(); showSlide(activeSlide - 1); }
-  if (event.key === 'ArrowRight') { event.preventDefault(); showSlide(activeSlide + 1); }
-});
-let touchStartX = 0;
-slidePanel.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].screenX; }, { passive: true });
-slidePanel.addEventListener('touchend', event => {
-  const difference = touchStartX - event.changedTouches[0].screenX;
-  if (Math.abs(difference) > 60) showSlide(activeSlide + (difference > 0 ? 1 : -1));
-}, { passive: true });
-showSlide(0);
 
-const languageSwitch = document.querySelector(".language-switch");
-languageSwitch.addEventListener("click", () => { languageSwitch.hash = window.location.hash; });
-
-// Autoplay pauses during interaction and while the page is hidden.
-const autoplayButton = document.getElementById('slide-autoplay');
+const screenshotDomains = ['journal.bhabanagarafoundation.org','journal.banglaacademy.gov.bd','journal.imli.gov.bd','pub.imli.gov.bd','journal.persian.du.ac.bd','journal.lokabhabna.com'];
+const galleryProjects = projects.filter(project => screenshotDomains.includes(project[2]));
 const gallery = document.getElementById('showcase');
-let autoplayPaused = false;
-let galleryHovered = false;
-let autoplayTimer;
-function resetAutoplay() {
-  clearInterval(autoplayTimer);
-  gallery.classList.toggle("scroll-paused", autoplayPaused || galleryHovered || document.hidden || gallery.contains(document.activeElement));
-  if (autoplayPaused || galleryHovered || document.hidden || gallery.contains(document.activeElement)) return;
-  autoplayTimer = setInterval(() => showSlide(activeSlide + 1), 20000);
+const panel = document.getElementById('showcase-slide');
+const segment = () => galleryProjects.map(([name,type,domain]) => `<a class="continuous-project" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer"><div class="continuous-project-title"><strong>${name}</strong><span>${type}</span></div><img src="assets/projects/${domain}-full.jpg" width="1440" alt="${name} — ${type}"></a>`).join('');
+panel.innerHTML = `<div class="continuous-window" tabindex="0" aria-label="একটানা চলমান ওয়েবসাইট গ্যালারি"><div class="continuous-track"><div class="continuous-segment">${segment()}</div><div class="continuous-segment" aria-hidden="true" inert>${segment()}</div></div></div>`;
+const track = panel.querySelector('.continuous-track');
+const segmentElement = panel.querySelector('.continuous-segment');
+function measureGallery() {
+  track.style.setProperty('--gallery-distance', `${-segmentElement.getBoundingClientRect().height}px`);
+  track.style.setProperty('--gallery-duration', `${Math.max(60, segmentElement.getBoundingClientRect().height / 48)}s`);
 }
-autoplayButton.addEventListener('click', () => {
-  autoplayPaused = !autoplayPaused;
-  autoplayButton.textContent = autoplayPaused ? 'চালু করুন' : 'থামান';
-  autoplayButton.setAttribute('aria-label', autoplayButton.textContent);
-  autoplayButton.setAttribute('aria-pressed', String(autoplayPaused));
-  resetAutoplay();
+panel.querySelectorAll('img').forEach(image => image.addEventListener('load', measureGallery));
+window.addEventListener('resize', measureGallery);
+measureGallery();
+const pauseButton = document.getElementById('slide-autoplay');
+pauseButton.addEventListener('click', () => {
+  const paused = gallery.classList.toggle('gallery-paused');
+  pauseButton.textContent = paused ? 'চালু করুন' : 'থামান';
+  pauseButton.setAttribute('aria-label', pauseButton.textContent);
+  pauseButton.setAttribute('aria-pressed', String(paused));
 });
-gallery.addEventListener('mouseenter', () => { galleryHovered = true; resetAutoplay(); });
-gallery.addEventListener('mouseleave', () => { galleryHovered = false; resetAutoplay(); });
-gallery.addEventListener('focusin', resetAutoplay);
-gallery.addEventListener('focusout', () => setTimeout(resetAutoplay, 0));
-gallery.addEventListener('touchstart', () => clearInterval(autoplayTimer), { passive: true });
-gallery.addEventListener('touchend', resetAutoplay, { passive: true });
-gallery.addEventListener('click', resetAutoplay);
-document.addEventListener('visibilitychange', resetAutoplay);
-resetAutoplay();
-
-function prepareScreenshotScroll() {
-  const image = slidePanel.querySelector('.website-scroll-image');
-  if (!image) return;
-  function measure() {
-    const distance = Math.max(0, image.getBoundingClientRect().height - image.parentElement.clientHeight);
-    image.style.setProperty('--scroll-distance', `${-distance}px`);
-  }
-  image.addEventListener('load', measure, { once: true });
-  if (image.complete) measure();
-}
-window.addEventListener('resize', prepareScreenshotScroll);
+const languageSwitch = document.querySelector('.language-switch');
+languageSwitch.addEventListener('click', () => { languageSwitch.hash = window.location.hash; });
