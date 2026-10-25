@@ -31,8 +31,8 @@ document.getElementById('brief-form').addEventListener('submit', event => {
 });
 
 // Real website captures; include only স্ক্রিনশটs successfully obtained.
-const স্ক্রিনশটDomains = ['journal.banglaacademy.gov.bd', 'journal.imli.gov.bd', 'pub.imli.gov.bd', 'journal.persian.du.ac.bd', 'journal.lokabhabna.com'];
-const slides = projects.filter(project => স্ক্রিনশটDomains.includes(project[2]));
+const screenshotDomains = ['journal.bhabanagarafoundation.org', 'journal.banglaacademy.gov.bd', 'journal.imli.gov.bd', 'pub.imli.gov.bd', 'journal.persian.du.ac.bd', 'journal.lokabhabna.com'];
+const slides = projects.filter(project => screenshotDomains.includes(project[2]));
 let activeSlide = 0;
 const slidePanel = document.getElementById('showcase-slide');
 const dotsPanel = document.getElementById('showcase-dots');
