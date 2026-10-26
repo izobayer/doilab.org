@@ -1,3 +1,11 @@
+function projectLogo(domain) {
+  if (domain.includes('bhabanagarafoundation.org')) return 'bhabanagara.png';
+  if (domain.includes('banglaacademy.gov.bd')) return 'bangla-academy.png';
+  if (domain.includes('imli.gov.bd')) return 'imli.png';
+  if (domain.includes('lokabhabna.com')) return 'lokabhabna.png';
+  if (domain.includes('rub.ac.bd')) return 'rub.png';
+  return 'du-user.png';
+}
 function projectUrl(domain) { if (domain.startsWith('doilab.org/')) return '/' + domain.slice(11) + '/'; return 'https://' + domain + (domain === 'journal.bhabanagarafoundation.org' ? '/index.php/BIJBS' : ''); }
 const projects = [
   ['ঢাকা বিশ্ববিদ্যালয়', 'ফারসি ভাষা ও সাহিত্য বিভাগ · একাডেমিক ওয়েবসাইট', 'persian.du.ac.bd'],
@@ -13,7 +21,7 @@ const projects = [
   ['রবীন্দ্র বিশ্ববিদ্যালয়', 'জার্নাল', 'journal.rub.ac.bd'],
 ];
 const bn = new Intl.NumberFormat('bn-BD', { minimumIntegerDigits: 2 });
-document.getElementById('project-list').innerHTML = projects.map(([name, type, domain], i) => `<a class="project-row" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="${name} ${type} ওয়েবসাইট (নতুন ট্যাবে খুলবে)"><span class="project-number">${bn.format(i + 1)}</span><span class="project-title">${name}<small>${type}</small></span><span class="project-domain">${domain}</span><span class="project-visit">ওয়েবসাইট দেখুন</span></a>`).join('');
+document.getElementById('project-list').innerHTML = projects.map(([name, type, domain], i) => `<a class="project-row" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer" aria-label="${name} ${type} ওয়েবসাইট (নতুন ট্যাবে খুলবে)"><span class="project-logo ${domain.includes('bhabanagarafoundation.org') ? 'project-logo-wide' : ''}"><img src="assets/institutions/${projectLogo(domain)}" alt="" width="56" height="56" loading="lazy"></span><span class="project-title">${name}<small>${type}</small></span><span class="project-domain">${domain}</span><span class="project-visit">ওয়েবসাইট দেখুন</span></a>`).join('');
 const menu = document.querySelector('.menu');
 const nav = document.querySelector('nav');
 function closeMenu() { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'মেনু খুলুন'); }
