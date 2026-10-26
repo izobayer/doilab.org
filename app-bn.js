@@ -1,6 +1,6 @@
 function projectLogo(domain) {
   if (domain.includes('bhabanagarafoundation.org')) return 'bhabanagara.png';
-  if (domain.includes('banglaacademy.gov.bd')) return 'bangla-academy.png';
+  if (domain.includes('banglaacademy.gov.bd')) return 'bangla-academy-user.png';
   if (domain.includes('imli.gov.bd')) return 'imli.png';
   if (domain.includes('lokabhabna.com')) return 'lokabhabna.png';
   if (domain.includes('rub.ac.bd')) return 'rub.png';
