@@ -1,5 +1,7 @@
-function projectUrl(domain) { return 'https://' + domain + (domain === 'journal.bhabanagarafoundation.org' ? '/index.php/BIJBS' : ''); }
+function projectUrl(domain) { if (domain.startsWith('doilab.org/')) return '/' + domain.slice(11) + '/'; return 'https://' + domain + (domain === 'journal.bhabanagarafoundation.org' ? '/index.php/BIJBS' : ''); }
 const projects = [
+  ['Nazrul Research Centre', 'Digital archive · University of Dhaka', 'doilab.org/nazrul-kendra'],
+  ['Nazrul Research Journal', 'Research journal · University of Dhaka', 'doilab.org/nazrul'],
   ['Bhabanagara Foundation', 'International Journal of Bengal Studies', 'journal.bhabanagarafoundation.org'],
   ['Bangla Academy', 'Journal', 'journal.banglaacademy.gov.bd'],
   ['Bangla Academy', 'Publications', 'pub.banglaacademy.gov.bd'],
@@ -31,11 +33,11 @@ document.getElementById('brief-form').addEventListener('submit', event => {
 });
 
 
-const screenshotDomains = ['journal.bhabanagarafoundation.org','journal.banglaacademy.gov.bd','journal.imli.gov.bd','pub.imli.gov.bd','journal.persian.du.ac.bd','journal.lokabhabna.com'];
+const screenshotDomains = ['doilab.org/nazrul-kendra','doilab.org/nazrul','journal.bhabanagarafoundation.org','journal.banglaacademy.gov.bd','journal.imli.gov.bd','pub.imli.gov.bd','journal.persian.du.ac.bd','journal.lokabhabna.com'];
 const galleryProjects = projects.filter(project => screenshotDomains.includes(project[2]));
 const gallery = document.getElementById('showcase');
 const panel = document.getElementById('showcase-slide');
-const segment = () => galleryProjects.map(([name,type,domain]) => `<a class="continuous-project" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer"><div class="continuous-project-title"><strong>${name}</strong><span>${type}</span></div><img src="assets/projects/${domain}-full.jpg" width="1440" alt="${name} — ${type}"></a>`).join('');
+const segment = () => galleryProjects.map(([name,type,domain]) => `<a class="continuous-project" href="${projectUrl(domain)}" target="_blank" rel="noopener noreferrer"><div class="continuous-project-title"><strong>${name}</strong><span>${type}</span></div><img src="assets/projects/${domain.replaceAll('/', '-')}-full.jpg" width="1440" alt="${name} — ${type}"></a>`).join('');
 panel.innerHTML = `<div class="continuous-window" tabindex="0" aria-label="Continuously scrolling website gallery"><div class="continuous-track"><div class="continuous-segment">${segment()}</div><div class="continuous-segment" aria-hidden="true" inert>${segment()}</div></div></div>`;
 const track = panel.querySelector('.continuous-track');
 const segmentElement = panel.querySelector('.continuous-segment');
