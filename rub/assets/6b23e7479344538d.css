@@ -1,0 +1,254 @@
+/* Article covers are 25% larger than the previous one-third size. */
+body,
+.pkp_structure_page,
+.pkp_structure_content {
+	background-color: #f5f5f5;
+}
+
+.pkp_structure_main::before {
+	background-color: #f5f5f5;
+}
+
+.obj_issue_toc .obj_article_summary .cover img {
+	max-height: 104.166px;
+	width: auto;
+}
+
+@media (min-width: 768px) {
+	.obj_issue_toc .obj_article_summary .cover {
+		width: 10.416667%;
+	}
+
+	.obj_issue_toc .obj_article_summary .cover img {
+		max-height: none;
+		width: 100%;
+	}
+}
+
+/* Institutional logos centred in the journal footer. */
+.imli-footer-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	align-items: center;
+	gap: 32px;
+	width: 100%;
+}
+
+.imli-footer-contact {
+	margin: 0;
+	font-style: normal;
+	font-size: 0.93rem;
+	line-height: 1.65;
+	text-align: left;
+}
+
+.imli-footer-contact span {
+	display: block;
+}
+
+.imli-footer-contact a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.imli-footer-contact a:hover,
+.imli-footer-contact a:focus {
+	text-decoration: underline;
+}
+
+.imli-footer-logos {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 24px 36px;
+	width: auto;
+}
+
+.imli-footer-logos img {
+	display: block;
+	width: auto;
+	max-width: 100%;
+}
+
+.imli-footer-logos .imli-footer-logo--imli {
+	width: 55px;
+	height: 55px;
+	object-fit: contain;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.imli-footer-logo--government {
+	height: 55px;
+}
+
+.imli-footer-logo--unesco {
+	height: 36px;
+}
+
+/* Hide the default OJS/PKP publishing-system badge and link. */
+.pkp_brand_footer {
+	display: none;
+}
+
+@media (max-width: 540px) {
+	.imli-footer-layout {
+		grid-template-columns: 1fr;
+		gap: 22px;
+	}
+
+	.imli-footer-balance {
+		display: none;
+	}
+
+	.imli-footer-logos {
+		gap: 20px 24px;
+	}
+
+	.imli-footer-logos .imli-footer-logo--imli {
+		width: 44px;
+		height: 44px;
+	}
+
+	.imli-footer-logo--government {
+		height: 44px;
+	}
+
+	.imli-footer-logo--unesco {
+		height: 27px;
+	}
+}
+
+/* Shared IMLI portal palette. */
+html {
+	background-color: #eef2f6;
+}
+
+html body {
+	color: #102334;
+	background-color: transparent;
+	background-image: linear-gradient(180deg, #eef2f6 0%, #f6f8fb 100%);
+	background-attachment: fixed;
+}
+
+body .pkp_structure_page,
+body .pkp_structure_content,
+body .pkp_structure_main,
+body .pkp_structure_sidebar {
+	background-color: transparent;
+}
+
+body .pkp_structure_main::before {
+	background-color: transparent;
+}
+
+body .pkp_structure_head,
+body .pkp_site_nav_menu {
+	background-color: #eef2f6;
+}
+
+body .pkp_structure_content {
+	box-shadow: 0 0 5px 0.5px rgba(103, 104, 107, 0.34);
+}
+
+.page_index_site .journals > ul > li {
+	box-sizing: border-box;
+	margin-bottom: 18px;
+	padding: 20px;
+	border: 1px solid rgba(122, 137, 148, 0.12);
+	border-radius: 20px;
+	background-image: linear-gradient(rgba(250, 252, 253, 0.96), rgba(236, 241, 245, 0.96));
+	box-shadow: 0 14px 28px rgba(90, 103, 114, 0.08);
+}
+
+.page_index_site .journals > ul > li:last-child {
+	margin-bottom: 0;
+}
+
+.page_index_site .journals h3 a {
+	color: #101e5a;
+}
+
+body .pkp_structure_footer_wrapper {
+	border-top: 1px solid rgba(79, 98, 119, 0.10);
+	background-color: transparent;
+	background-image: linear-gradient(180deg, #f6f8fb 0%, #edf1f5 100%);
+	color: #102334;
+}
+
+body .pkp_structure_footer,
+body .pkp_footer_content {
+	background-color: transparent;
+	color: #102334;
+}
+
+body .dropdown-menu,
+body .pkp_navigation_primary ul {
+	background-color: #eef2f6;
+}
+
+body .cmp_notification {
+	border: 1px solid rgba(79, 98, 119, 0.14);
+	border-radius: 12px;
+	background-color: #f8fafc;
+	color: #102334;
+	box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+}
+
+@media (max-width: 767px) {
+	.page_index_site .journals > ul > li {
+		margin-bottom: 12px;
+		padding: 14px;
+		border-radius: 16px;
+	}
+}
+/* RUB identity over the reference portal palette. */
+.pkp_site_name .is_text{display:block!important;min-height:108px;padding:18px 10px 18px 92px!important;background:url("/rub/assets/53e513c67d69a604.png") left center/68px auto no-repeat!important;color:#101e5a!important;font-size:32px!important;line-height:1.6!important;white-space:normal}.pkp_site_name .is_text:after{content:'The Rabindra Biswabidyalaya Patrika · Rabindra University, Bangladesh';display:block;font:13px/1.7 Arial,sans-serif;color:#465a70;letter-spacing:.25px}.pkp_site_name_wrapper{padding-top:18px!important}.pkp_navigation_primary>li>a{font-size:15px;color:#101e5a!important}.pkp_navigation_primary ul{z-index:9999;background:#eef2f6!important}.pkp_navigation_primary ul a{color:#101e5a!important}.pkp_navigation_primary ul a:hover,.pkp_navigation_primary ul a:focus{background:#dce5ee!important}.pkp_structure_head{overflow:visible!important}.pkp_site_nav_menu{overflow:visible}.pkp_structure_content{background:#fff!important}.pkp_structure_main{background:#fff!important}.rub-about{font-size:16px;line-height:1.9}.rub-footer{display:flex;align-items:center;gap:24px}.rub-footer img{width:58px;height:auto}.rub-footer address{font-style:normal;line-height:1.9}.rub-footer strong{font-size:18px;color:#101e5a}.pkp_site_name a:hover{text-decoration:none}.obj_issue_toc .cover img{max-height:320px;width:auto}.pkp_navigation_user a{font-size:14px}.pkp_brand_footer{display:none}.pkp_structure_main p,.obj_article_summary .title{overflow-wrap:anywhere}@media(max-width:767px){.pkp_site_name .is_text{font-size:22px!important;min-height:90px;padding-left:62px!important;background-size:46px auto!important;padding-right:8px!important}.pkp_site_name .is_text:after{font-size:10px}.pkp_navigation_primary>li>a{color:#101e5a!important}.pkp_site_nav_toggle{color:#101e5a}.rub-footer{align-items:flex-start}.rub-footer img{width:40px}.pkp_structure_content{width:100%}.pkp_navigation_primary ul{position:static!important}}
+.pkp_navigation_user>li>a,.pkp_navigation_user>li>a:hover,.pkp_head_wrapper .pkp_search .search_controls,.pkp_head_wrapper .pkp_search .search_prompt{color:#101e5a!important}.pkp_navigation_user a:focus,.pkp_search button:focus{outline:2px solid #101e5a;outline-offset:3px}.pkp_site_nav_toggle:before{border-color:#101e5a!important}.pkp_site_nav_toggle:after{background:#101e5a!important}.pkp_navigation_user a{background:transparent!important}
+/* Compact issue-cover thumbnails beside article entries. */
+.obj_article_summary{min-height:116px}.obj_article_summary>.cover,.obj_issue_toc .obj_article_summary>.cover{float:left;width:66px!important;margin:0 18px 10px 0}.obj_article_summary>.cover img,.obj_issue_toc .obj_article_summary>.cover img{width:66px!important;height:auto!important;max-height:104px!important;object-fit:contain;object-position:top;display:block}.obj_article_summary:after{content:'';display:table;clear:both}.obj_article_details .entry_details .cover_image img{width:auto!important;max-width:110px!important;max-height:165px!important;height:auto!important}.obj_article_details .entry_details .cover_image a{display:inline-block}@media(max-width:767px){.obj_article_summary>.cover,.obj_issue_toc .obj_article_summary>.cover{width:54px!important;margin-right:14px}.obj_article_summary>.cover img,.obj_issue_toc .obj_article_summary>.cover img{width:54px!important;max-height:84px!important}.obj_article_summary{min-height:100px}.obj_article_details .entry_details .cover_image img{max-width:90px!important;max-height:140px!important}}
+.obj_article_summary>.cover{position:relative;z-index:2}.obj_article_summary>.cover a{display:block;position:relative}
+/* Keep the mobile masthead in normal flow, including tablet widths. */
+@media(max-width:991px){
+ .pkp_head_wrapper{padding:0!important}.pkp_site_name_wrapper{position:relative;display:flex;align-items:center;height:auto!important;min-height:132px;padding:14px 76px 14px 16px!important;box-sizing:border-box}.pkp_site_name{position:static!important;left:auto!important;right:auto!important;width:100%;padding:0!important;margin:0!important;overflow:visible!important;white-space:normal!important;line-height:normal!important}.pkp_site_name .is_text{font-size:23px!important;line-height:1.55!important;min-height:0!important;padding:8px 0 8px 56px!important;background-size:42px auto!important;overflow-wrap:normal;word-break:normal}.pkp_site_name .is_text:after{font-size:11px!important;line-height:1.6!important;letter-spacing:0!important;margin-top:5px;white-space:normal;color:#334967!important}.pkp_site_nav_toggle{display:block!important;position:absolute!important;left:auto!important;right:16px!important;top:24px!important;width:44px!important;height:44px!important;margin:0!important;padding:0!important;border:1px solid #101e5a!important;border-radius:5px!important;background:#101e5a!important;color:#fff!important;z-index:3;cursor:pointer;box-shadow:none!important}.pkp_site_nav_toggle:before{content:'☰'!important;display:block!important;position:static!important;transform:none!important;inset:auto!important;width:auto!important;height:auto!important;margin:0!important;border:0!important;background:none!important;color:#fff!important;font:28px/42px Arial,sans-serif!important;text-align:center!important}.pkp_site_nav_toggle:after{display:none!important}.pkp_site_nav_toggle--transform:before{content:'×'!important;font-size:34px!important}.pkp_site_nav_toggle:focus-visible{outline:3px solid #a74a27!important;outline-offset:3px}.pkp_site_nav_menu{display:none;position:static!important;top:auto!important;left:auto!important;width:100%!important;box-sizing:border-box;padding:16px 22px!important;border-top:1px solid #c6d2df;background:#e6edf5!important;max-height:none!important;overflow:visible!important}.pkp_site_nav_menu--isOpen{display:block!important}.pkp_site_nav_menu a,.pkp_navigation_primary>li>a,.pkp_site_nav_menu .pkp_search .search_prompt{color:#101e5a!important;font-size:16px!important;line-height:1.65!important}.pkp_navigation_primary ul{position:static!important;background:#e6edf5!important;padding-left:18px!important}.pkp_navigation_primary ul a{font-size:15px!important}.pkp_navigation_user_wrapper{position:static!important}.pkp_navigation_user{display:flex!important;flex-wrap:wrap;gap:18px;margin-top:16px!important}.pkp_navigation_user>li>a{color:#101e5a!important}.pkp_navigation_search_wrapper{margin-top:14px!important}.pkp_structure_content{clear:both}
+}
+@media(max-width:360px){.pkp_site_name_wrapper{padding-left:12px!important;padding-right:65px!important}.pkp_site_name .is_text{font-size:21px!important;padding-left:44px!important;background-size:34px auto!important}.pkp_site_name .is_text:after{font-size:10px!important}.pkp_site_nav_toggle{right:12px!important}}
+/* Bengali masthead in Qayyum Book; English subtitle keeps its own font. */
+@font-face{font-family:'RUB Qayyum Book';src:url("/rub/assets/a0259362de85ede3.ttf") format('truetype');font-weight:400;font-style:normal;font-display:swap}.pkp_site_name .is_text{font-family:'RUB Qayyum Book',serif!important;font-weight:400!important}.pkp_site_name .is_text:after{font-family:Arial,sans-serif!important}
+
+/* Navigation and inline search matched to the IMLI journal reference. */
+.pkp_structure_head{position:relative;z-index:1000}.pkp_navigation_primary ul{z-index:10000!important;border:1px solid #b8c5d3;border-radius:8px;padding:8px!important;background:#eef2f6!important}.pkp_navigation_primary ul li+li{margin-top:6px}.pkp_navigation_primary ul a{border:1px solid rgba(0,0,0,.18);border-radius:6px;background:rgba(255,255,255,.42);padding:7px 10px!important;font-size:14px!important;font-weight:700}.rub-portal-home,.pkp_navigation_primary>li>a,.pkp_navigation_user>li>a{box-sizing:border-box;border:1px solid rgba(0,0,0,.22);border-radius:6px;background:rgba(255,255,255,.46)!important;font:700 14px/1.2 Arial,sans-serif!important;color:#101e5a!important;text-decoration:none!important}.rub-portal-home:hover,.pkp_navigation_primary>li>a:hover,.pkp_navigation_user>li>a:hover{background:#fff!important;border-color:#006798}.pkp_navigation_primary>li>a{position:relative}.pkp_navigation_primary>li>a:after{content:'';position:absolute;bottom:3px;left:10px;right:10px;height:2px;background:#006798;transform:scaleX(0);transition:transform .24s}.pkp_navigation_primary>li>a:hover:after,.pkp_navigation_primary>li>a:focus:after{transform:scaleX(1)}.pkp_navigation_user>li>a{padding:7px 10px!important}.pkp_search_inline_form{display:none}
+@media(min-width:992px){.pkp_navigation_primary_wrapper{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:8px;padding-bottom:18px;overflow:visible}.rub-portal-home{display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;margin-right:0}.pkp_navigation_primary{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0!important;padding:0!important;float:none!important}.pkp_navigation_primary>li{margin:0!important}.pkp_navigation_primary>li>a{display:inline-flex;align-items:center;min-height:34px;padding:6px 10px!important;font-size:14px!important}.pkp_navigation_search_wrapper{float:none!important;flex:0 0 auto;margin:0 0 0 6px!important;padding:0!important;border:0!important}.pkp_navigation_search_wrapper>.pkp_search_desktop{display:none!important}.pkp_search_inline_form{display:flex;align-items:stretch;height:34px;margin:0;border:1px solid rgba(0,0,0,.22);border-radius:6px;background:rgba(255,255,255,.46);overflow:hidden}.pkp_search_inline_form__field{position:relative;display:flex;align-items:center}.pkp_search_inline_form__field .fa{position:absolute;left:9px;color:#52677a;pointer-events:none}.pkp_search_inline_form__input{box-sizing:border-box;width:70px;height:32px;padding:5px 8px 5px 28px;border:0;background:rgba(255,255,255,.34);font:14px/1.2 Arial,sans-serif;transition:width .24s,background-color .24s}.pkp_search_inline_form__input:focus{width:150px;background:#fff;outline:none}.pkp_search_inline_form:focus-within{border-color:#006798;box-shadow:0 2px 7px #0002}.pkp_search_inline_form__button{height:32px;padding:5px 10px;border:0;border-left:1px solid #0003;background:rgba(255,255,255,.3);font:700 14px/1.2 Arial,sans-serif;color:#101e5a;cursor:pointer}.pkp_search_inline_form__button:hover{background:#fff;color:#004f75}}
+@media(max-width:991px){.pkp_site_nav_menu--isOpen{display:grid!important;grid-template-columns:minmax(0,1fr);gap:6px;max-height:calc(100dvh - 148px)!important;overflow-y:auto!important;padding:10px 16px!important}.pkp_site_nav_menu>#siteNav{display:none!important}.pkp_navigation_primary_row,.pkp_navigation_primary_wrapper,.pkp_navigation_primary,.pkp_navigation_search_wrapper,.pkp_navigation_user_wrapper,.pkp_navigation_user.pkp_navigation_user,.pkp_navigation_primary>li,.pkp_navigation_user>li{display:contents!important}.pkp_navigation_primary_row:before,.pkp_navigation_primary_row:after,.pkp_navigation_primary_wrapper:before,.pkp_navigation_primary_wrapper:after{display:none!important}.pkp_navigation_primary>li:first-child,.pkp_navigation_primary>li:last-child>a,.pkp_navigation_primary>li:last-child>ul>li:first-child{display:none!important}.pkp_navigation_primary>li:last-child>ul,.pkp_navigation_primary>li:last-child>ul>li:last-child{display:contents!important}.rub-portal-home,.pkp_navigation_primary>li>a,.pkp_navigation_primary>li:last-child>ul>li:last-child>a,.pkp_navigation_search_wrapper>.pkp_search_desktop,.pkp_navigation_user>li>a{display:flex;align-items:center;width:100%;min-width:0;min-height:42px;margin:0!important;padding:7px 10px!important;border:1px solid #0003;border-radius:6px;background:rgba(255,255,255,.46)!important;color:#101e5a!important;font:700 14px/1.2 Arial,sans-serif!important;box-sizing:border-box;box-shadow:none!important;white-space:normal}.pkp_navigation_search_wrapper>.pkp_search_desktop:before{display:none}.pkp_navigation_search_wrapper .fa{margin-right:6px}.pkp_navigation_primary>li>a:after{display:none}.pkp_navigation_primary ul li+li{margin:0}.rub-portal-home:focus-visible,.pkp_navigation_primary a:focus-visible,.pkp_navigation_user a:focus-visible{outline:2px solid #006798;outline-offset:1px}}
+
+/* Remove the separate Home navigation button. */
+.pkp_structure_head .rub-portal-home{display:none!important}
+
+/* One mobile menu icon, positioned to the left of the masthead. */
+@media(max-width:991px){
+ .pkp_site_name_wrapper{padding:14px 16px 14px 76px!important}
+ .pkp_site_nav_toggle{left:16px!important;right:auto!important}
+ .pkp_site_nav_toggle>span{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+ .pkp_site_nav_toggle>span:before,.pkp_site_nav_toggle>span:after{display:none!important}
+}
+@media(max-width:360px){.pkp_site_name_wrapper{padding-left:68px!important;padding-right:12px!important}.pkp_site_nav_toggle{left:12px!important;right:auto!important}}
+
+/* Justify the journal introduction while keeping contact details left aligned. */
+.rub-about>p:first-child{text-align:justify;text-justify:inter-word;line-height:1.85;hyphens:none;-webkit-hyphens:none;word-break:normal;overflow-wrap:normal}
+
+@media(max-width:991px){.pkp_navigation_primary>li:first-child{display:contents!important}.pkp_navigation_primary>li:last-child>a{display:flex!important}}
+
+/* More compact journal introduction. */
+.rub-about{font-size:14px!important}.rub-about p{font-size:14px!important}
+
+/* Equal spacing between navigation items, including the search form. */
+@media(min-width:992px){
+ .pkp_navigation_primary_wrapper{gap:12px!important}
+ .pkp_navigation_primary{display:contents!important}
+ .pkp_navigation_primary>li{margin:0!important;padding:0!important;float:none!important}
+ .pkp_navigation_search_wrapper{margin:0!important;padding:0!important;float:none!important}
+}
+
+/* Match spacing between the visible menu borders and Search. */
+@media(min-width:992px){.pkp_navigation_primary>li>a{margin:0!important}.pkp_search_inline_form{margin:0!important}}
