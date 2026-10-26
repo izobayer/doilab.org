@@ -1,5 +1,6 @@
 function projectUrl(domain) { if (domain.startsWith('doilab.org/')) return '/' + domain.slice(11) + '/'; return 'https://' + domain + (domain === 'journal.bhabanagarafoundation.org' ? '/index.php/BIJBS' : ''); }
 const projects = [
+  ['University of Dhaka', 'Department of Persian Language and Literature · Academic website', 'persian.du.ac.bd'],
   ['Nazrul Research Centre', 'Digital archive · University of Dhaka', 'doilab.org/nazrul-kendra'],
   ['Nazrul Research Journal', 'Research journal · University of Dhaka', 'doilab.org/nazrul'],
   ['Bhabanagara Foundation', 'International Journal of Bengal Studies', 'journal.bhabanagarafoundation.org'],
@@ -33,7 +34,7 @@ document.getElementById('brief-form').addEventListener('submit', event => {
 });
 
 
-const screenshotDomains = ['doilab.org/nazrul-kendra','doilab.org/nazrul','journal.bhabanagarafoundation.org','journal.banglaacademy.gov.bd','journal.imli.gov.bd','pub.imli.gov.bd','journal.persian.du.ac.bd','journal.lokabhabna.com'];
+const screenshotDomains = ['persian.du.ac.bd','doilab.org/nazrul-kendra','doilab.org/nazrul','journal.bhabanagarafoundation.org','journal.banglaacademy.gov.bd','journal.imli.gov.bd','pub.imli.gov.bd','journal.persian.du.ac.bd','journal.lokabhabna.com'];
 const galleryProjects = projects.filter(project => screenshotDomains.includes(project[2]));
 const gallery = document.getElementById('showcase');
 const panel = document.getElementById('showcase-slide');
