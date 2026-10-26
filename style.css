@@ -74,3 +74,5 @@ html[lang=bn] .hero-copy>p,html[lang=bn] .service-grid p,html[lang=bn] .steps p,
 .doi-mechanical[data-phase="lift-crossmark"] .mechanical-paper{filter:blur(3px) brightness(.88)}
 
 .summary-doi-logo{width:30px;height:30px;object-fit:contain;flex-shrink:0}.summary-record .summary-doi-inline{align-items:center;gap:8px}
+
+body>footer.wrap>p{font-size:17px;line-height:1.9}body>footer.wrap>p>a{font-size:18px;font-weight:550}html[lang=bn] body>footer.wrap>p{font-size:19px}@media(max-width:650px){body>footer.wrap>p{font-size:16px;line-height:1.9}body>footer.wrap>p>a{font-size:17px}html[lang=bn] body>footer.wrap>p{font-size:18px}}
